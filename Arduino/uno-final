@@ -1,0 +1,36 @@
+const int buzzer = 5;
+/*
+ * state can be one of these:
+ * 0 - buzzer auto-off
+ * 1 - buzzer auto-on
+ * 5 - buzzer user-off
+ */
+int state;
+
+void setup()
+{
+  Serial.begin(115200);
+  pinMode(buzzer, OUTPUT);
+  digitalWrite(buzzer, HIGH);
+}
+
+void loop()
+{
+  while(Serial.available())
+  {
+    state = Serial.read();
+
+    if(state == 1)
+    {
+      digitalWrite(buzzer, LOW);
+    }
+    if(state == 0)
+    {
+      digitalWrite(buzzer, HIGH);
+    }
+    if(state == 5)
+    {
+      digitalWrite(buzzer, HIGH);
+    }
+  }
+}
